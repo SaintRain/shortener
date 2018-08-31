@@ -2,15 +2,13 @@
 
 namespace AppBundle\Services;
 
-use AppBundle\Entity\Transition;
+use AppBundle\Entity\{Transition, RedirectRule};
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\RedirectRule;
 use MaxMind\Db\Reader;
 
 class TransitionService
 {
-
     private $em;
     private $geoip;
 
@@ -22,7 +20,6 @@ class TransitionService
 
     public function save(Request $request, RedirectRule $redirectRule)
     {
-
         $geography = $this->geoip->get($request->getClientIp());
         $iso = $geography['country']['iso_code'] ?? '';
         $transition = new Transition();
@@ -33,5 +30,4 @@ class TransitionService
         $this->em->persist($transition);
         $this->em->flush();
     }
-
 }
