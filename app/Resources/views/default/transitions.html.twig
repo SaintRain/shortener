@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Transitions for url {{ url }}</h1>
+
+    {% if pagerfanta.nbResults %}
+        <table class="table">
+            <thead>
+            <th>Date time</th>
+            <th>User agent</th>
+            <th>Geography</th>
+            <th>Ip</th>
+            </thead>
+            <tbody>
+            {% for t in transitions %}
+                <tr>
+                    <td>
+                        {{ t.created|date('h:i m.d.y') }}
+                    </td>
+                    <td>
+                        {{ t.userAgent }}
+                    </td>
+                    <td>
+                        {{ t.isoCode }}
+                    </td>
+                    <td>
+                        {{ t.ip }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {{ paginationHtml|raw }}
+    {% else %}
+        <h3>No transitions yet.</h3>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Well done!</h1>
+        <p>Redirect url <a href="{{ url }}">{{ url }}</a></p>
+        <p>Transitions url <a href="{{ urlTransitions }}">{{ urlTransitions }}</a></p>
+        <a href="{{ path('homepage') }}"><b>Try again</b></a>
+    </div>
+{% endblock %}

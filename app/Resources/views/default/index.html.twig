@@ -1,5 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    <div class="container">
+        <h1>URL shortener</h1>
+        {{ form_start(form) }}
+        {{ form_row(form.url, {label:'Url:'}) }}
+        {{ form_row(form.expired, {label:'Expired:'}) }}
+        {{ form_row(form.slug, {label:'Custom slug (max 7 characters a-zA-Z0-9_-):',
+            attr: {placeholder:'Leave blank to generate the link automatically..'}}) }}
+        {{ form_row(form.submit) }}
+        {{ form_widget(form._token) }}
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

@@ -1,0 +1,13 @@
+services:
+    slug_service:
+        class:        AppBundle\Services\SlugService
+        arguments:    ['@router']
+    transition_service:
+        class:        AppBundle\Services\TransitionService
+        arguments:    ['@doctrine.orm.entity_manager', '@insomnia_max_mind_geo_ip']
+
+    request_rule_listener:
+        class:      AppBundle\EventListener\RedirectRuleSubscriber
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+        arguments:    ['@slug_service']
